@@ -21,7 +21,7 @@ export const Input = ({inputName, value, setState}: iProps) => {
         focus-visible:outline-none
         focus-visible:border-transparent
       `}
-      placeholder='Name'
+      placeholder={inputName}
       value={value}
       onChange={handleChange}
     />

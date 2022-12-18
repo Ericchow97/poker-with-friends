@@ -1,11 +1,18 @@
+import { useState } from 'react'
 import './App.css'
 import { Home } from './pages/Home'
+import { WebSocketContext } from './components/general/WebSocketContext'
 
-function App() {
+
+const App = () => {
+  const [socket, setSocket] = useState<WebSocket | null>(null)
+
   return (
-    <div className="App w-screen h-screen ">
-      <Home/>
-    </div>
+    <WebSocketContext.Provider value={{ socket, setSocket }}>
+      <div className="App w-screen h-screen ">
+        <Home />
+      </div>
+    </WebSocketContext.Provider>
   )
 }
 
