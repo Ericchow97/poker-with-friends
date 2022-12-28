@@ -1,11 +1,13 @@
 import { useState, useContext } from 'react'
+import { useNavigate } from "react-router-dom";
 import { Form, Input, Button } from "../base components"
 import { WebSocketContext } from '../general/WebSocketContext'
-
+import { WebSocketMessage } from '../../../types'
 
 export const HomeForm = () => {
   const [name, setName] = useState('')
   const [roomId, setRoomId] = useState('')
+  const navigate = useNavigate()
   const { setSocket } = useContext(WebSocketContext)
 
   //TODO: Add a security key so only this site can connect to the websocket
@@ -14,23 +16,41 @@ export const HomeForm = () => {
     // preform validation
     if (!name) return
     if (type === 'Join' && !roomId) return
+
     const socket = new WebSocket('wss://qqucdvs2ji.execute-api.us-east-2.amazonaws.com/prod/')
     console.log(socket)
     socket.onopen = (event) => {
       setSocket(socket)
       console.log(event)
       const data = {
-        action: type,
+        action: "CreateJoinRoom",
         data: {
           name: name,
-          roomId: roomId
+          roomId: roomId,
+          type: type
         }
       }
+
       socket.send(JSON.stringify(data))
     }
+
+    socket.onmessage = (event) => {
+      const message = JSON.parse(event.data) as WebSocketMessage
+      console.log(message)
+
+      if (message.status === 200) {
+        // store user data in state
+        console.log('here')
+        return navigate(`/PWF/${message.data.roomId}`)
+      }
+      //TODO: handle Errors "invalidRoom" & "Server Error"
+      return
+    }
+
+    socket.onerror = (message) => {
+      console.log(message)
+    }
   }
-
-
 
   return (
     <Form>
