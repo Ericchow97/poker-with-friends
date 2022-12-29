@@ -1,5 +1,5 @@
 import { HomeForm } from "../components/Home/HomeForm"
-import { Container } from "../components/base components/Container"
+import { Container } from "../components/baseComponents"
 
 export const Home = () => {
   //TODO: Replace with logo

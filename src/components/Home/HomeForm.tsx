@@ -1,6 +1,6 @@
 import { useState, useContext } from 'react'
 import { useNavigate } from "react-router-dom";
-import { Form, Input, Button } from "../base components"
+import { Form, Input, Button } from "../baseComponents"
 import { WebSocketContext } from '../general/WebSocketContext'
 import { WebSocketMessage } from '../../../types'
 
