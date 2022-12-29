@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import { Home, PWFGame } from './routes'
-import { WebSocketContext } from './components/general/WebSocketContext'
+import { UserContext, UserInfoInterface } from './components/general/UserInfoContext'
 
 import {
   createBrowserRouter,
@@ -20,15 +20,19 @@ const router = createBrowserRouter([
 ]);
 
 const App = () => {
-  const [socket, setSocket] = useState<WebSocket | null>(null)
+  const [userInfo, setUserInfo] = useState<UserInfoInterface>({
+    socket: null,
+    connectionId: '',
+    roomId: ''
+  })
 
   //TODO: custom navigation animations on new routes 
   return (
-    <WebSocketContext.Provider value={{ socket, setSocket }}>
+    <UserContext.Provider value={{ userInfo, setUserInfo }}>
       <div className="App w-screen h-screen ">
         <RouterProvider router={router} />
       </div>
-    </WebSocketContext.Provider>
+    </UserContext.Provider>
   )
 }
 
