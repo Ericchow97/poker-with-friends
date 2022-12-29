@@ -7,7 +7,7 @@ module.exports = {
   theme: {
     extend: {
       borderWidth:{
-        '20': '20px'
+        '10': '10px'
       },
       inset: {
         '1/8': '12.5%',

@@ -2,6 +2,6 @@ import { Form } from './Form'
 import { Input } from './Input'
 import { Button } from './Button'
 import { Container } from './Container'
-import { ToolTip } from './Tooltip'
+import { Popover } from './Popover'
 
-export { Form, Input, Button, Container, ToolTip }
+export { Form, Input, Button, Container, Popover }

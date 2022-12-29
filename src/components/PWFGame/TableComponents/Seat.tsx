@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import { PWFGameTableContext, PWFGameContextInterface } from "../components/PWFTable"
-import { ToolTip } from "../../baseComponents"
+import { Popover } from "../../baseComponents"
 
 interface IProps {
   customStyles: string,
@@ -9,7 +9,7 @@ interface IProps {
 }
 
 export const Seat = ({ customStyles, index, modalVisible }: IProps) => {
-  const gameTableContext = useContext<PWFGameContextInterface>(PWFGameTableContext)
+  const { setActiveIndex } = useContext<PWFGameContextInterface>(PWFGameTableContext)
 
   return (
     <>
@@ -31,13 +31,12 @@ export const Seat = ({ customStyles, index, modalVisible }: IProps) => {
             bg-transparent
             relative
           `}
-          onFocus={() => gameTableContext.setActiveIndex(index)}
+        onFocus={() => setActiveIndex(index)}
         >
           Sit Here
         </button>
-        {modalVisible && <ToolTip text="This is a test" />}
+        {modalVisible && <Popover setVisibility={setActiveIndex} text="This is a test" />}
       </div>
-
     </>
   )
 }
