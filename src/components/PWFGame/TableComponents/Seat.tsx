@@ -1,5 +1,6 @@
 import { useContext } from "react"
 import { PWFGameTableContext, PWFGameContextInterface } from "../components/PWFTable"
+import { SeatForm } from "./SeatForm"
 import { Popover } from "../../baseComponents"
 
 interface IProps {
@@ -31,11 +32,11 @@ export const Seat = ({ customStyles, index, modalVisible }: IProps) => {
             bg-transparent
             relative
           `}
-        onFocus={() => setActiveIndex(index)}
+          onFocus={() => setActiveIndex(index)}
         >
           Sit Here
         </button>
-        {modalVisible && <Popover setVisibility={setActiveIndex} text="This is a test" />}
+        {modalVisible && <Popover setVisibility={setActiveIndex} content={<SeatForm />} />}
       </div>
     </>
   )

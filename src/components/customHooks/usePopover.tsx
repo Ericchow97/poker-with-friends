@@ -5,11 +5,12 @@ interface IProps {
 }
 
 export const usePopover = ({ setVisibility }: IProps) => {
-  const ref = useRef(null)
+  const ref = useRef<HTMLDivElement  | null>(null)
 
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
-      if (ref.current && !(ref.current as Node).contains(e.target as Node)) {
+      // check parent element which is the popover activator
+      if (ref.current && !ref.current.parentElement?.contains(e.target as Node)) {
         setVisibility(null)
       }
     }
@@ -19,5 +20,4 @@ export const usePopover = ({ setVisibility }: IProps) => {
   }, [ref])
 
   return { ref }
-
 }

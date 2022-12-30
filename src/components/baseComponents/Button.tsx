@@ -2,9 +2,10 @@
 interface iProps {
   text: string
   callback: () => void
+  customStyles?: string
 }
 
-export const Button = ({ text, callback }: iProps) => {
+export const Button = ({ text, callback, customStyles }: iProps) => {
 
   return (
     <button
@@ -17,6 +18,7 @@ export const Button = ({ text, callback }: iProps) => {
         hover:shadow-lg
         hover:scale-y-105 
         hover:-translate-y-0.5
+        ${customStyles}
       `}
       onClick={callback}
     >

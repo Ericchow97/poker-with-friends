@@ -10,8 +10,6 @@ export const PWFGameTableContext = createContext<PWFGameContextInterface>({ setA
 export const PWFTable = () => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null)
 
-  console.log(activeIndex)
-
   // TODO: TEST make sure clicks only rerender the sit here component
   return (
     <PWFGameTableContext.Provider value={{ setActiveIndex }}>
