@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import { Home, PWFGame } from './routes'
-import { UserContext, UserInfoInterface } from './components/general/UserInfoContext'
+import { UserContext, UserInfoInterface, UserContextInitialValue } from './components/general/UserInfoContext'
 
 import {
   createBrowserRouter,
@@ -20,11 +20,8 @@ const router = createBrowserRouter([
 ]);
 
 const App = () => {
-  const [userInfo, setUserInfo] = useState<UserInfoInterface>({
-    socket: null,
-    connectionId: '',
-    roomId: ''
-  })
+  const [userInfo, setUserInfo] = useState<UserInfoInterface>(UserContextInitialValue)
+  console.log(userInfo)
 
   //TODO: custom navigation animations on new routes 
   return (

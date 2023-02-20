@@ -20,7 +20,6 @@ export const HomeForm = () => {
     const socket = new WebSocket('wss://qqucdvs2ji.execute-api.us-east-2.amazonaws.com/prod/')
     console.log(socket)
     socket.onopen = (event) => {
-      // setSocket(socket)
       console.log(event)
       const data = {
         action: "CreateJoinRoom",
@@ -43,7 +42,8 @@ export const HomeForm = () => {
         setUserInfo({
           socket: socket,
           connectionId: message.data.connectionId,
-          roomId: message.data.roomId
+          roomId: message.data.roomId,
+          isHost: message.data.isHost
         })
         return navigate(`/PWF/${message.data.roomId}`)
       }
@@ -56,6 +56,7 @@ export const HomeForm = () => {
     }
   }
 
+  // TODO: Loading when create a room 
   return (
     <Form>
       <Input inputName='Name' value={name} setState={setName} />

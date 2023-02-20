@@ -1,12 +1,16 @@
 import { useState, useContext } from "react"
-// import { WebSocketContext } from "../../general/UserInfoContext"
+import { UserContext } from "../../general/UserInfoContext"
 import { InputNumber, Button } from "../../baseComponents"
 
 export const SeatForm = () => {
   const [stack, setStack] = useState<number | string>('')
-  // const { socket } = useContext(WebSocketContext)
+  const { userInfo } = useContext(UserContext)
+
+  console.log(userInfo)
 
   // console.log(socket)
+
+
   const handleSubmit = () => {
 
   }

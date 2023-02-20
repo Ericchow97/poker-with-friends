@@ -2,8 +2,9 @@ import { createContext } from 'react'
 
 export interface UserInfoInterface {
   socket: WebSocket | null
-  connectionId: string,
   roomId: string
+  connectionId: string
+  isHost: boolean
 }
 
 export interface UserContextInterface {
@@ -11,12 +12,15 @@ export interface UserContextInterface {
   setUserInfo: React.Dispatch<React.SetStateAction<UserInfoInterface>>
 }
 
+export const UserContextInitialValue: UserInfoInterface = {
+  socket: null,
+  connectionId: '',
+  roomId: '',
+  isHost: false
+}
+
 export const UserContext = createContext<UserContextInterface>({
-  userInfo: {
-    socket: null,
-    connectionId: '',
-    roomId: ''
-  },
+  userInfo: UserContextInitialValue,
   setUserInfo: () => { }
 }
 )
